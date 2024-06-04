@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validation</title>
+</head>
+<body>
+
+<h1>Q5. Write a program that
+a. Store correct password in a JS variable.
+b. Asks user to enter his/her password
+c. Validate the two passwords:
+i. Check if user has entered password. If not, then 
+give message “ Please enter your password”
+ii. Check if both passwords are same. If they are 
+same, show message “Correct! The password you 
+entered matches the original password”. Show 
+“Incorrect password” otherwise</h1>
+    <h1>Password Validation</h1>
+    <label for="userPassword">Enter your password: </label>
+    <input type="password" id="userPassword">
+    <button onclick="validatePassword()">Submit</button>
+    <p id="message"></p>
+
+    <script>
+        // a. Store correct password in a JS variable
+        const correctPassword = "YourSecurePassword";
+
+        function validatePassword() {
+            // b. Asks user to enter his/her password
+            const userPassword = document.getElementById('userPassword').value;
+            const messageElement = document.getElementById('message');
+
+            // c. Validate the two passwords:
+            // i. Check if user has entered password. If not, then give message “Please enter your password”
+            if (!userPassword) {
+                messageElement.innerText = "Please enter your password";
+                return;
+            }
+
+            // ii. Check if both passwords are same. If they are same, show message “Correct! The password you entered matches the original password”. Show “Incorrect password” otherwise
+            if (userPassword === correctPassword) {
+                messageElement.innerText = "Correct! The password you entered matches the original password.";
+            } else {
+                messageElement.innerText = "Incorrect password.";
+            }
+        }
+    </script>
+
+<h1>Write a program that takes time as input from user in 24 
+hours clock format like: 1900 = 7pm. Implement the 
+following case using if, else & else if statements</h1>
+
+<h1>Time Greeting</h1>
+    <label for="timeInput">Enter time in 24-hour format (e.g., 1900 for 7 PM): </label>
+    <input type="number" id="timeInput" min="0" max="2359">
+    <button onclick="determineGreeting()">Submit</button>
+    <p id="greetingMessage"></p>
+
+    <script>
+        function determineGreeting() {
+            // Get the time input from the user
+            const timeInput = document.getElementById('timeInput').value;
+            const hour = Math.floor(timeInput / 100); // Extract the hour part
+            const messageElement = document.getElementById('greetingMessage');
+            
+            // Validate if the input is within the correct range
+            if (timeInput < 0 || timeInput > 2359 || isNaN(hour)) {
+                messageElement.innerText = "Please enter a valid time between 0000 and 2359.";
+                return;
+            }
+
+            let greeting;
+
+            // Determine the greeting based on the hour
+            if (hour >= 0 && hour < 12) {
+                greeting = "Good morning";
+            } else if (hour >= 12 && hour < 18) {
+                greeting = "Good afternoon";
+            } else if (hour >= 18 && hour <= 23) {
+                greeting = "Good evening";
+            } else {
+                greeting = "Invalid time input";
+            }
+
+            // Display the greeting
+            messageElement.innerText = greeting;
+        }
+    </script>
+</body>
+</html>
